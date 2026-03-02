@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+//`timescale 1ns / 1ps
 
 /////////////////////////////////////////////////////////////////////////////////////erithcrypt_final
 
@@ -33,9 +33,9 @@ module erythcrypt_final(
 //     Instantiate the 16-to-1 multiplexer
         wire [7:0] mux_output;
         mux_16to1 mux (
-            .A(0), .B(Y1), .C(Y2), .D(Y3), .E(Y4), .F(Y5), .G(Y6), .H(Y7),
+            .A(8'h0), .B(Y1), .C(Y2), .D(Y3), .E(Y4), .F(Y5), .G(Y6), .H(Y7),
             .I(Y8), .J(Y9), .K(Y10),
-             .L(Y11) , .M(0), .N(0), .O(0), .P(0),
+            .L(Y11) , .M(8'h0), .N(8'h0), .O(8'h0), .P(8'h0),
             .So(Control),
             .Y(mux_output)
         );
