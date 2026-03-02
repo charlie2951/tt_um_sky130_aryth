@@ -35,6 +35,6 @@ module tt_um_arythcrypto (
         .CLK(clk),
         .Reset(!rst_n),
         .Control(op),
-        .OUTPUT(uio_out)
+        .OUTPUT(uo_out)
 );
 endmodule
