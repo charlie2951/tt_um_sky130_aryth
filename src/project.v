@@ -2,10 +2,11 @@
  * Copyright (c) 2024 Your Name
  * SPDX-License-Identifier: Apache-2.0
  */
-
+//demo of arithmetic crypto core
+`timescale 1ns / 1ps
 `default_nettype none
 
-module tt_um_example (
+module tt_um_arythcrypto (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
@@ -17,11 +18,23 @@ module tt_um_example (
 );
 
   // All output pins must be assigned. If not used, assign to 0.
-  assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
-  assign uio_out = 0;
-  assign uio_oe  = 0;
+ // assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
+  assign uio_out = 0; //uio_out not used , hence its 0
+  assign uio_oe  = 0;//all io act as input pin, hence it is 0
 
   // List all unused inputs to prevent warnings
   wire _unused = &{ena, clk, rst_n, 1'b0};
-
+    // Expanding 6 bit to 8 bit input after zero padding
+    wire [7:0] A = {1'b0,1'b0, ui_in[5:0]};
+    wire [7:0] B = {1'b0,1'b0, uio_in[5:0]};
+    wire [3:0] op = {uio_in[7:6],ui_in[7:6]};
+//Instantiate core modules
+    erythcrypt_final design0(
+        .I1(A),
+        .I2(B),
+        .CLK(clk),
+        .Reset(!rst_n),
+        .Control(op),
+        .OUTPUT(uio_out)
+);
 endmodule
