@@ -52,7 +52,7 @@ module erythcrypt_final(
     input [3:0]So,
     output reg [7:0] Y
     );
-     @(*) begin
+    always @(*) begin
     case (So)
         4'b0000: Y = A;
         4'b0001: Y = B;
@@ -70,7 +70,7 @@ module erythcrypt_final(
         4'b1101: Y =N;
         4'b1110: Y =O;
         4'b1111: Y =P;
-        default: Y  = 8'b00000000;
+     //   default: Y  = 8'b00000000;
      endcase
    end
 endmodule
