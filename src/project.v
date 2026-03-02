@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 //demo of arithmetic crypto core
-`timescale 1ns / 1ps
+//`timescale 1ns / 1ps
 `default_nettype none
 
 module tt_um_arythcrypto (
