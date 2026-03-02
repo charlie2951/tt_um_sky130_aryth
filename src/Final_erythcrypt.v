@@ -520,7 +520,7 @@ module mod_inverse(
     reg [7:0] x0, x1, y0, y1;
     reg [7:0] quotient, remainder, temp;
     reg [7:0] t;
-
+/*
     always @(a,m) begin
         x0 = 0; x1 = 1; y0 = 1; y1 = 0;
         x = a; y = m;
@@ -541,6 +541,30 @@ module mod_inverse(
         end
         inverse = x0 >= 0 ? x0 : x0 + m;
     end
+    */
+    always @* begin
+    x0 = 0; x1 = 1; y0 = 1; y1 = 0;
+    x = a; y = m;
+
+    quotient  = 0;
+    remainder = 0;
+    t         = 0;
+
+    if (y != 0) begin
+        quotient  = x / y;
+        remainder = x % y;
+        x = y;
+        y = remainder;
+        t = x0 - quotient * x1;
+        x0 = x1;
+        x1 = t;
+        t = y0 - quotient * y1;
+        y0 = y1;
+        y1 = t;
+    end
+
+    inverse = x0;
+end
 endmodule
 
 //////////////////////////////////////////////////////////////////////////////////////////////////MODULAR EXPONENTIATION
