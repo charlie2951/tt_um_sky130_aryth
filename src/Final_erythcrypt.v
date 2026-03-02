@@ -52,7 +52,7 @@ module erythcrypt_final(
     input [3:0]So,
     output reg [7:0] Y
     );
-    always @(*) begin
+     @(*) begin
     case (So)
         4'b0000: Y = A;
         4'b0001: Y = B;
@@ -399,8 +399,8 @@ integer i,j,k;
 always@ (A or B)
 begin
 //Initialize the matrices-convert 1 D to 3D arrays
-    {A1[0][0],A1[0][1],A1[1][0],A1[1][1]} <= A;
-    {B1[0][0],B1[0][1],B1[1][0],B1[1][1]} <= B;
+    {A1[0][0],A1[0][1],A1[1][0],A1[1][1]} = A;
+    {B1[0][0],B1[0][1],B1[1][0],B1[1][1]} = B;
 i <= 0;
 j <= 0;
 k <= 0;
@@ -528,18 +528,18 @@ module mod_inverse(
             t=0;
         end
         else begin
-            quotient <= x / y;
-            remainder <= x % y;
-            x <= y;
-            y <= remainder;
-            t <= x0 - quotient * x1;
-            x0 <= x1;
-            x1 <= t;
-            t <= y0 - quotient * y1;
-            y0 <= y1;
-            y1 <= t;
+            quotient = x / y;
+            remainder = x % y;
+            x = y;
+            y = remainder;
+            t = x0 - quotient * x1;
+            x0 = x1;
+            x1 = t;
+            t = y0 - quotient * y1;
+            y0 = y1;
+            y1 = t;
         end
-        inverse <= x0 >= 0 ? x0 : x0 + m;
+        inverse = x0 >= 0 ? x0 : x0 + m;
     end
 endmodule
 
